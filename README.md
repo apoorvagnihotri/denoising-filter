@@ -9,8 +9,12 @@ Run `main.m` matlab code, it uses the inbuilt image of `peppers.png`. It runs an
 ---
 
 # Theory
+Wiener filter tries to optimize the reconstructed image by minimizing the root mean squared error between the reconstructed image and the original image. This is directly proportional to the L2 distance of the reconstructed and the original image. The filter assumes that the PSD remains mostly constant between all the natural images in the nature. 
 
+---
 
+# Assumptions
+* I have assumed the the 
 ---
 
 # Requirements
@@ -37,23 +41,12 @@ toolboxes installed:
 Original Image:
 ![original](https://i.imgur.com/hazRI7w.png)
 
+
 Blurred + Noise Added Image:
 ![distorted](https://i.imgur.com/NvSDNJw.png)
 
+
 Recontructed Image:
 ![reconstructed](https://i.imgur.com/t1vai5E.png)
-
----
-
-# Conclusions
-* We can add a forgiveness metric to the algorithms to allow for slightly non-linear trajectory of a point of interest. This would take `f_pixels`, which would accept any point even on the wrong side of a line until its distance crosses `f_pixels`.
-* This `f_pixels` approach could also be used to solve the issue of very narrow TERs as seen in the case of `I3`.
-
----
-
-# Future Work
-* Forgiveness matric to make the valid regions more robust to a nonlinear motion of the point of interest.
-* Forgiveness metric to make the valid regions more wide in the case of narrow TERs.
-* Convert the code to be more modular to accept any custom fundamental matrices that user might want to give.
 
 ---
