@@ -16,7 +16,6 @@ blurred_noisy = imnoise(blurred, 'gaussian', noise_mean, noise_var);
 figure, imshow(blurred_noisy);
 title('Simulate Blur and Noise');
 
-% trying to find best possible nsr in a range
 msee = 100;
 for k = 0.01:0.02:1.1
     output = wiener_filter(blurred_noisy, blur_filter, k);
@@ -33,6 +32,6 @@ psnr = 10*log10(256*256/msee);
 fprintf('MSE: %7.2f \n', msee);
 fprintf('PSNR: %9.7f dB \n', psnr);
 
-% printing the corrected image
+% printing the 
 figure, imshow(imadjust(output));
 title('restored image with exact spectrum')
