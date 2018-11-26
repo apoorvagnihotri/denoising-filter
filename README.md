@@ -4,29 +4,29 @@ I try to implement a wiener filter given [here](), in this assignment.
 ---
 
 # Usage
-Run `main.m` matlab code, it uses the inbuilt image of `peppers.png`. It runs and tries to find the best snr ratio. `main.m` uses `wiener_filter.m` file that contains the main filter.
+Run `main.m` matlab code, it uses the inbuilt image of `peppers.png`. It runs and tries to find the best SNR ratio. `main.m` uses `wiener_filter.m` file that contains the main filter.
 
 ---
 
 # Theory
-In Wiener filter we try to reconstruct a image that has been covolved with a known error function `h(t)`. The convolved image also contains an additative white noise (guassian). The filter minimizes the root mean squared error between the reconstructed denoised image and the original image. The error metric that Weiner filter reduces is MSE is directly proportional to the L2 distance between reconstructed and the original image.
+In Wiener filter, we try to reconstruct an image that has been convolved with a known error function `h(t)`. The convolved image also contains an additive white noise (Gaussian). The filter minimizes the root mean squared error between the reconstructed denoised image and the original image. The error metric that Weiner filter reduces is MSE is directly proportional to the L2 distance between reconstructed and the original image.
 
-While calculating the "deblurring filter" that needs to be convolved with the distorted image the filter needs S_xx, i.e. the PSD of the original image. But this can't be possible as we are to generate this original image itself. The filter gets around this by multiple ways, the way that I have used in my implementation is to use the emperical fact that the PSD of all the natural images are neary similar, therefore a PSD of an another uncorropted image can be used to estimate the PSD of the original image.
+While calculating the "deblurring filter" that needs to be convolved with the distorted image the filter needs S_xx, i.e. the PSD of the original image. But this can't be possible as we are to generate this original image itself. The filter gets around this by multiple ways, the way that I have used in my implementation is to use the empirical fact that the PSD of all the natural images is nearly similar, therefore a PSD of another uncorrupted image can be used to estimate the PSD of the original image.
 
-We calculate the PSD of 10 images with similar dimentions, average out this PSD and use this value for the value of S_xx in the Weiner filter Equations to be used as an estimate for the image that we need to reconstruct.
+We calculate the PSD of 10 images with similar dimensions, average out this PSD and use this value for the value of S_xx in the Weiner filter Equations to be used as an estimate for the image that we need to reconstruct.
 
 ## Equations
 
 ![](https://i.imgur.com/lVO7dQv.png)
-This eqation is what I have implemented. This equation's LHS is the debluring filter that would need to be convolved with the original image.
+This equation is what I have implemented. This equation's LHS is the deblurring filter that would need to be convolved with the original image.
 
 Here:
 ```text
 H           : DTFT of the blur function
 S_xx        : PSD of the original image (estimated using 10 other images)
-S_nn        : PSD of the additative noise
+S_nn        : PSD of the additive noise
 W           : DTFT of the deblur function
-f1, f2      : coordinates in frequency domain
+f1, f2      : coordinates in the frequency domain
 ```
 
 ---
