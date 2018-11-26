@@ -1,10 +1,12 @@
 # Intro
-I try to implement a wiener filter given [here](), in this assignment. 
+I try to implement wiener filter variant given [here](http://www.owlnet.rice.edu/~elec539/Projects99/BACH/proj2/wiener.html), in this repository. 
 
 ---
 
 # Usage
-Run `main.m` matlab code, it uses the inbuilt image of `peppers.png`. It runs and tries to find the best SNR ratio. `main.m` uses `wiener_filter.m` file that contains the main filter.
+Run `main.m` matlab code. The rusults are stored in `./result/`.
+`main.m` uses `wiener_filter.m` and `Sxx_train.m` that contain the main filter and the PSD estimator (uses multiple images to train first).
+To look at some of the saved results from previous runs, look at `./saved_results/`.
 
 ---
 
@@ -15,7 +17,7 @@ While calculating the "deblurring filter" that needs to be convolved with the di
 
 We calculate the PSD of 10 images with similar dimensions, average out this PSD and use this value for the value of S_xx in the Weiner filter Equations to be used as an estimate for the image that we need to reconstruct.
 
-## Equations
+### Equation
 
 ![](https://i.imgur.com/lVO7dQv.png)
 This equation is what I have implemented. This equation's LHS is the deblurring filter that would need to be convolved with the original image.
