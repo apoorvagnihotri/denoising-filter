@@ -31,11 +31,6 @@ f1, f2      : coordinates in the frequency domain
 
 ---
 
-# Assumptions
-* I have assumed the PSD of the original image directly in the function wiener_filter as the PSD of natural images are similar and can be used to estimate others.
-
----
-
 # Requirements
 ```text
 MATLAB                                           Version 9.5         (R2018b)
