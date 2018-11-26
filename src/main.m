@@ -14,8 +14,8 @@ title('Original Image');
 imwrite(I, strcat("../result/", "Original_", file));
 
 % blurr the  testing image
-dim = 12;
-sigma_ = 5;
+dim = 7;
+sigma_ = 9;
 blur_filter = fspecial('gaussian', dim, sigma_);
 blurred = imfilter(I, blur_filter, 'conv', 'circular');
 figure, imshow(blurred);
@@ -23,8 +23,8 @@ title('Simulate Blur');
 imwrite(blurred, strcat("../result/", "Blurred_", file));
 
 % additive noise on the testing
-noise_mean = 0.0;
-noise_var = 0.04;
+noise_mean = 0;
+noise_var = 0.64;
 blurred_noisy = imnoise(blurred, 'gaussian', noise_mean, noise_var);
 figure, imshow(blurred_noisy);
 title('Simulate Blur and Noise');
@@ -62,6 +62,6 @@ fprintf('dim: %d \n', dim);
 fprintf('blur_sigma(filter): %f \n', sigma_);
 fprintf('noise_sigma(additive): %f \n', noise_var^0.5);
 fprintf('Original PSNR: %9.7f dB \n', psnr_original);
-fprintf('Final PSNR: %9.7f dB \n', psnr_reconstructed);
 fprintf('Original MSE: %7.2f \n', mse_original);
 fprintf('Final MSE: %7.2f \n', mse_reconstructed);
+fprintf('Final PSNR: %9.7f dB \n', psnr_reconstructed);
