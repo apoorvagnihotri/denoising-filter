@@ -15,6 +15,5 @@ function out_img = wiener_filter(original_img, img, blur_filter, sigma_)
     
     G = fft2(img);                            % convert the distorted to fft
     FFimg = G.*df;
-    out_img = real(ifft2(FFimg));                 % convert the corrected to time
-    %out_img = mat2gray(out);
+    out_img = imadjust(real(ifft2(FFimg)));   % convert the corrected to time
 end
