@@ -14,7 +14,8 @@ Wiener filter tries to optimize the reconstructed image by minimizing the root m
 ---
 
 # Assumptions
-* I have assumed the the 
+* I have assumed the PSD of the original image directly in the function wiener_filter as the PSD of natural images are similar and can be used to estimate others.
+
 ---
 
 # Requirements

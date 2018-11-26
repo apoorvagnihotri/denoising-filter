@@ -1,41 +1,46 @@
-I = im2double(imread('peppers.png'));
+% read the image
+file = 'peppers.png';
+I = im2double(imread(file));
 I = rgb2gray(I);
 imshow(I);
 title('Original Image');
+imwrite(I, strcat("../result/", "Original_", file));
 
+% blurr the image
 n = 12;
 sigma_ = 5;
 blur_filter = fspecial('gaussian', n, sigma_);
 blurred = imfilter(I, blur_filter, 'conv', 'circular');
 figure, imshow(blurred);
 title('Simulate Blur');
+imwrite(I, strcat("../result/", "Blurred_", file));
 
+% additive noise
 noise_mean = 0.0;
 noise_var = 0.04;
 blurred_noisy = imnoise(blurred, 'gaussian', noise_mean, noise_var);
 figure, imshow(blurred_noisy);
 title('Simulate Blur and Noise');
+imwrite(I, strcat("../result/", "Blurred_n_Noise_", file));
 
-% trying to find best possible nsr in a range
-msee = 100;
-for k = 0.01:0.02:1.1
-    output = wiener_filter(blurred_noisy, blur_filter, k);
-    msew = mse(output, I);
-    if (msew < msee)
-	    msee = msew;
-	    nsr = k;
-	end
-end
+% run weiner filter
+output = wiener_filter(I, blurred_noisy, blur_filter, noise_var^(0.5));
 
-% printing out the optimal values
-fprintf('optimal k: %f: \n', nsr);
-psnr = 10*log10(256*256/msee);
-fprintf('dim: %d \n', n);
-fprintf('blur_sigma: %f \n', sigma_);
-fprintf('noise_sigma: %f \n', noise_var^0.5);
-fprintf('PSNR: %9.7f dB \n', psnr);
-fprintf('MSE: %7.2f \n', msee);
-
-% printing the corrected image
-figure, imshow(imadjust(output));
+% printing the corrected image after gamma correction
+figure, imshow(output);
 title('restored image with exact spectrum')
+imwrite(I, strcat("../result/", "Reconstructed_", file));
+
+
+% calculate mse and psnr
+mse_original = mse(blurred_noisy, I);
+mse_reconstructed = mse(output, I);
+% psnr_original = psnr(blurred_noisy, I);
+% psnr_reconstructed = psnr(output, I);
+fprintf('dim: %d \n', n);
+fprintf('blur_sigma(filter): %f \n', sigma_);
+fprintf('noise_sigma(additive): %f \n', noise_var^0.5);
+fprintf('Original PSNR: %9.7f dB \n', psnr_original);
+fprintf('Final PSNR: %9.7f dB \n', psnr_reconstructed);
+fprintf('Original MSE: %7.2f \n', msee);
+fprintf('Final MSE: %7.2f \n', mse_reconstructed);
