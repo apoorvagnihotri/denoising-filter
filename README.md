@@ -57,24 +57,30 @@ toolboxes installed:
 Image 1:
 Original Image:
 ![original](https://i.imgur.com/D5jrHDd.jpg)
+
 Blurred + Noise Added Image:
 ![distorted](https://i.imgur.com/vZyZQxR.jpg)
+
 Recontructed Image:
 ![reconstructed](https://i.imgur.com/IgUGH8p.jpg)
 
 Image 2:
 Original Image:
 ![original](https://i.imgur.com/9qVAxEF.jpg)
+
 Blurred + Noise Added Image:
 ![distorted](https://i.imgur.com/nyDSQr2.jpg)
+
 Recontructed Image:
 ![reconstructed](https://i.imgur.com/5Jtmi0v.jpg)
 
 Image 3:
 Original Image:
 ![original](https://i.imgur.com/JMFrwhP.png)
+
 Blurred + Noise Added Image:
 ![distorted](https://i.imgur.com/B994u3R.png)
+
 Recontructed Image:
 ![reconstructed](https://i.imgur.com/fgWCjyr.png)
 
